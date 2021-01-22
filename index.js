@@ -348,11 +348,37 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
+const getImageByName = (name) => {
+  return name.split(" ").join("-") + ".jpg"
+}
 
-    /* Code here */
+const getWikiPageName = (name) => {
+  return `https://en.wikipedia.org/wiki/${name.split(" ").join("_")}`
+}
 
+function getHTML(data){
+
+    for (let i = 0; i < data.length; i++) {
+
+      console.log(
+        `
+        <div id="artist">
+          <div class="image">
+            <img src="./assets/${getImageByName(data[i].name)}" />
+          </div>
+          <div class="name">
+            <a href=${getWikiPageName(data[i].name)}>${data[i].name}</a>
+          </div>
+          <div class="bio">
+            ${data[i].bio}
+          </div>
+        </div>
+        `
+      )
+    }
   }
+
+  getHTML(artists)
 
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
